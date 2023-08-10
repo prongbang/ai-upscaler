@@ -1,0 +1,5 @@
+{
+  "linux": "https://prongbang.github.io/ai-upscaler/executable/linux/ffmpeg",
+  "macos": "https://prongbang.github.io/ai-upscaler/executable/macos/ffmpeg",
+  "windows": "https://prongbang.github.io/ai-upscaler/executable/windows/ffmpeg.exe"
+}
