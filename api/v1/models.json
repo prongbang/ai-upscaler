@@ -2,6 +2,9 @@
   {
     "label": "General",
     "value": "realesrgan-x4plus",
+    "scale": [
+      4
+    ],
     "url": [
       {
         "url": "https://prongbang.github.io/ai-upscaler/models/realesrgan-x4plus.bin",
@@ -16,6 +19,9 @@
   {
     "label": "General + Anime",
     "value": "realesrgan-x4plus-anime",
+    "scale": [
+      4
+    ],
     "url": [
       {
         "url": "https://prongbang.github.io/ai-upscaler/models/realesrgan-x4plus-anime.bin",
@@ -30,6 +36,11 @@
   {
     "label": "Anime",
     "value": "realesr-animevideov3",
+    "scale": [
+      2,
+      3,
+      4
+    ],
     "url": [
       {
         "url": "https://prongbang.github.io/ai-upscaler/models/realesr-animevideov3-x2.bin",
@@ -60,6 +71,9 @@
   {
     "label": "4x-UltraSharp FP16",
     "value": "4x-ultrasharp-fp16",
+    "scale": [
+      4
+    ],
     "url": [
       {
         "url": "https://prongbang.github.io/ai-upscaler/models/4x-ultrasharp-fp16.bin",
@@ -74,6 +88,9 @@
   {
     "label": "4x-UltraSharp FP32",
     "value": "4x-ultrasharp-fp32",
+    "scale": [
+      4
+    ],
     "url": [
       {
         "url": "https://prongbang.github.io/ai-upscaler/models/4x-ultrasharp-fp32.bin",
@@ -88,6 +105,9 @@
   {
     "label": "4x-UniScale Restore FP16",
     "value": "4x-uniscale-restore-fp16",
+    "scale": [
+      4
+    ],
     "url": [
       {
         "url": "https://prongbang.github.io/ai-upscaler/models/4x-uniscale-restore-fp16.bin",
@@ -102,6 +122,9 @@
   {
     "label": "4x-UniScale Restore FP32",
     "value": "4x-uniscale-restore-fp32",
+    "scale": [
+      4
+    ],
     "url": [
       {
         "url": "https://prongbang.github.io/ai-upscaler/models/4x-uniscale-restore-fp32.bin",
