@@ -13,9 +13,9 @@ AI Image Upscaler
 - `Video Upscaling`: Enhance video content by upscaling it. This functionality involves processing each frame of a video, increasing its resolution while maintaining the overall video quality.
 
 Download the latest portable 
-[Windows](https://github.com/prongbang/ai-upscaler/releases/tag/0.1.0) / 
-[Linux](https://github.com/prongbang/ai-upscaler/releases/tag/0.1.0) / 
-[MacOS](https://github.com/prongbang/ai-upscaler/releases/tag/0.1.0)
+[Windows](https://github.com/prongbang/ai-upscaler/releases/tag/0.1.1) / 
+[Linux](https://github.com/prongbang/ai-upscaler/releases/tag/0.1.1) / 
+[MacOS](https://github.com/prongbang/ai-upscaler/releases/tag/0.1.1)
 executable files.
 
 ### Upscale Image
