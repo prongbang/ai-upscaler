@@ -72,6 +72,24 @@
     ]
   },
   {
+    "label": "Bubble AnimeScale Compact V1",
+    "value": "bubble-animescale-compact-v1-ncnn-fp32",
+    "scale": [
+      2
+    ],
+    "ttaMode": false,
+    "url": [
+      {
+        "url": "https://prongbang.github.io/ai-upscaler/models/bubble-animescale-compact-v1-ncnn-fp32-x2.bin",
+        "exist": false
+      },
+      {
+        "url": "https://prongbang.github.io/ai-upscaler/models/bubble-animescale-compact-v1-ncnn-fp32-x2.param",
+        "exist": false
+      }
+    ]
+  },
+  {
     "label": "4x-UltraSharp FP16",
     "value": "4x-ultrasharp-fp16",
     "scale": [
