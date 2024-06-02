@@ -18,6 +18,24 @@
     ]
   },
   {
+    "label": "General Fast",
+    "value": "realesrgan-x4fast",
+    "scale": [
+      4
+    ],
+    "ttaMode": true,
+    "url": [
+      {
+        "url": "https://prongbang.github.io/ai-upscaler/models/realesrgan-x4fast.bin",
+        "exist": false
+      },
+      {
+        "url": "https://prongbang.github.io/ai-upscaler/models/realesrgan-x4fast.param",
+        "exist": false
+      }
+    ]
+  },
+  {
     "label": "General + Anime",
     "value": "realesrgan-x4plus-anime",
     "scale": [
