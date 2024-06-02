@@ -25,3 +25,7 @@ executable files.
 ### Upscale Video
 
 ![img_1.png](screenshots/img_1.png)
+
+### Model
+
+https://upscale.wiki/wiki/Model_Database
