@@ -1,14 +1,466 @@
-<!doctype html>
+</html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>AI Upscaler</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Upscaler - Image & Video Enhancement</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 50%, #8b5cf6 100%);
+        }
+
+        .feature-gradient-1 {
+            background: linear-gradient(135deg, #3b82f6, #2dd4bf);
+        }
+
+        .feature-gradient-2 {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        }
+
+        .feature-gradient-3 {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .cta-gradient {}
+    </style>
 </head>
+
 <body>
-    <h1>AI Upscaler</h1>
+    <!-- Navigation -->
+    <nav class="bg-[#2e3267] w-full z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M14 10L12 11L10 10M20 7L18 8M18 6L20 7M20 7V9.5M14 4L12 3L10 4M4 7L6 8M4 7L6 6M4 7V9.5M12 21L10 20M12 21L14 20M12 21V18.5M6 18L4 17V14.5M18 18L20 17V14.5"
+                        stroke="url(#nav-gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <defs>
+                        <linearGradient id="nav-gradient" x1="4" y1="3" x2="20" y2="21" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#4070ff" />
+                            <stop offset="100%" stop-color="#8f5bff" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="text-xl font-bold">AI-Upscaler</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#features" class="hover:text-indigo-300 transition-colors">Features</a>
+                <a href="#how-it-works" class="hover:text-indigo-300 transition-colors">How It Works</a>
+                <a href="#download" class="hover:text-indigo-300 transition-colors">Download</a>
+            </div>
+            <a href="#download"
+                class="bg-[#4055ff] text-white px-4 py-2 rounded-lg hover:bg-[#3045ee] transition duration-300">
+                Get Started
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-[#576aff] pt-20 pb-0">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Transform Your Media with AI</h1>
+                    <p class="text-xl mb-8 text-gray-100">Enhance your images and videos with cutting-edge AI
+                        technology. Up to 4x resolution boost with stunning details.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#download"
+                            class="bg-white text-gray-900 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium text-center transition-colors">
+                            Download Now
+                        </a>
+                        <a href="#features"
+                            class="border border-white border-opacity-25 hover:border-opacity-50 px-6 py-3 rounded-lg font-medium text-center transition-colors">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-[#475adf] bg-opacity-70 p-6 rounded-xl">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <img src="https://github.com/prongbang/ai-upscaler/raw/main/screenshots/before.jpeg"
+                                    alt="Before" class="rounded-lg">
+                                <p class="text-center mt-2">Before</p>
+                            </div>
+                            <div class="float-animation">
+                                <img src="https://github.com/prongbang/ai-upscaler/raw/main/screenshots/after.jpeg"
+                                    alt="After" class="rounded-lg">
+                                <p class="text-center mt-2">After (4x)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Wave -->
+        <div class="w-full overflow-hidden mt-16">
+            <svg viewBox="0 0 1440 150" preserveAspectRatio="none" class="w-full h-24 fill-[#0b111e]">
+                <path
+                    d="M0,32L80,48C160,64,320,96,480,101.3C640,107,800,85,960,74.7C1120,64,1280,64,1360,64L1440,64L1440,150L1360,150C1280,150,1120,150,960,150C800,150,640,150,480,150C320,150,160,150,80,150L0,150Z">
+                </path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Blue strip section -->
+    <section class="bg-[#576aff] py-8">
+        <div class="container mx-auto px-4">
+            <!-- This section is intentionally empty to match the image -->
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-[#0b111e]">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Powerful AI-Enhanced Features</h2>
+                <p class="text-xl text-gray-400">Our state-of-the-art technology delivers exceptional results</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div
+                    class="bg-gray-800 rounded-xl p-6 hover:shadow-lg transition duration-300 border border-gray-700 hover:border-blue-500 transform hover:-translate-y-1">
+                    <div class="feature-gradient-1 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Image Upscaling</h3>
+                    <p class="text-gray-400">Transform low-resolution images into crisp, detailed versions with our
+                        advanced AI technology. Support for 2x, 3x, and 4x scaling.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div
+                    class="bg-gray-800 rounded-xl p-6 hover:shadow-lg transition duration-300 border border-gray-700 hover:border-indigo-500 transform hover:-translate-y-1">
+                    <div class="feature-gradient-2 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Video Upscaling</h3>
+                    <p class="text-gray-400">Process videos frame-by-frame to increase resolution while preserving
+                        quality. Enjoy your favorite content in higher definition.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div
+                    class="bg-gray-800 rounded-xl p-6 hover:shadow-lg transition duration-300 border border-gray-700 hover:border-purple-500 transform hover:-translate-y-1">
+                    <div class="feature-gradient-3 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Advanced Models</h3>
+                    <p class="text-gray-400">Powered by Real-ESRGAN technology. Choose from various AI models to get
+                        the best results for your specific media type.</p>
+                </div>
+            </div>
+
+            <div class="mt-16 p-8 bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl border border-gray-700">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-2/3 mb-6 md:mb-0 md:pr-8">
+                        <h3 class="text-2xl font-bold mb-4">Cross-Platform Support</h3>
+                        <p class="text-gray-300">AI-Upscaler works seamlessly across all major operating systems.
+                            Use it on your preferred platform without compromising on features or performance.</p>
+                    </div>
+                    <div class="md:w-1/3 flex flex-wrap justify-center gap-4">
+                        <div class="bg-gray-900 bg-opacity-70 p-3 rounded-lg flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span>Windows</span>
+                        </div>
+                        <div class="bg-gray-900 bg-opacity-70 p-3 rounded-lg flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span>Linux</span>
+                        </div>
+                        <div class="bg-gray-900 bg-opacity-70 p-3 rounded-lg flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-400" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                            </svg>
+                            <span>macOS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works Section -->
+    <section id="how-it-works" class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">How It Works</h2>
+                <p class="text-xl text-gray-400">AI-Upscaler uses advanced neural networks to enhance your media in just
+                    a few simple steps</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                    <div
+                        class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-xl font-bold mb-6">
+                        1</div>
+                    <h3 class="text-xl font-bold mb-3">Upload Your Media</h3>
+                    <p class="text-gray-400 mb-4">Simply drag and drop your image or video file into the application.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                    <div
+                        class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-xl font-bold mb-6">
+                        2</div>
+                    <h3 class="text-xl font-bold mb-3">Choose Settings</h3>
+                    <p class="text-gray-400 mb-4">Select your upscaling factor (2x, 3x, or 4x) and choose the AI model.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                    <div
+                        class="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center text-xl font-bold mb-6">
+                        3</div>
+                    <h3 class="text-xl font-bold mb-3">Process & Download</h3>
+                    <p class="text-gray-400 mb-4">Let our AI work its magic and then download your enhanced result.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section class="py-16 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">See It In Action</h2>
+                <p class="text-xl text-gray-400">AI-Upscaler features an intuitive interface for both beginners and
+                    professionals</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
+                    <div class="p-3 border-b border-gray-700 flex justify-between items-center">
+                        <p class="font-medium">Image Upscaling</p>
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                    </div>
+                    <img src="https://github.com/prongbang/ai-upscaler/raw/main/screenshots/image.png" alt="Image Upscaling Screenshot" class="w-full h-auto">
+                </div>
+
+                <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
+                    <div class="p-3 border-b border-gray-700 flex justify-between items-center">
+                        <p class="font-medium">Video Upscaling</p>
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                    </div>
+                    <img src="https://github.com/prongbang/ai-upscaler/raw/main/screenshots/video.png" alt="Video Upscaling Screenshot" class="w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="py-16 bg-gradient-to-b from-gray-800 to-black">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Download AI-Upscaler Today</h2>
+                <p class="text-xl text-gray-400">Get started with our free portable executable files for your preferred
+                    platform</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <!-- Windows Download -->
+                <div
+                    class="bg-gray-900 rounded-xl p-6 text-center border border-gray-700 hover:border-blue-500 transition duration-300">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path
+                                d="M21 2H3C1.9 2 1 2.9 1 4V16C1 17.1 1.9 18 3 18H10V20H8V22H16V20H14V18H21C22.1 18 23 17.1 23 16V4C23 2.9 22.1 2 21 2ZM21 16H3V4H21V16Z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Windows</h3>
+                    <p class="text-gray-400 mb-4">For Windows 10/11 (64-bit)</p>
+                    <a href="https://github.com/prongbang/ai-upscaler/releases/tag/0.1.1"
+                        class="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        Download for Windows
+                    </a>
+                </div>
+
+                <!-- Linux Download -->
+                <div
+                    class="bg-gray-900 rounded-xl p-6 text-center border border-gray-700 hover:border-indigo-500 transition duration-300">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-indigo-600 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                            <path d="M12 8l-4 4h3v4h2v-4h3z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Linux</h3>
+                    <p class="text-gray-400 mb-4">For Ubuntu, Debian, and more</p>
+                    <a href="https://github.com/prongbang/ai-upscaler/releases/tag/0.1.1"
+                        class="block bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        Download for Linux
+                    </a>
+                </div>
+
+                <!-- macOS Download -->
+                <div
+                    class="bg-gray-900 rounded-xl p-6 text-center border border-gray-700 hover:border-purple-500 transition duration-300">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-purple-600 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path
+                                d="M18.71,19.5C17.88,20.74,17,21.95,15.66,21.97C14.32,22,13.89,21.18,12.37,21.18C10.84,21.18,10.37,21.95,9.1,22C7.79,22.05,6.8,20.68,5.96,19.47C4.25,17,2.94,12.45,4.7,9.39C5.57,7.87,7.13,6.91,8.82,6.88C10.1,6.86,11.32,7.75,12.11,7.75C12.89,7.75,14.37,6.68,15.92,6.84C16.57,6.87,18.39,7.1,19.56,8.82C19.47,8.88,17.39,10.1,17.41,12.63C17.44,15.65,20.06,16.66,20.09,16.67C20.06,16.74,19.67,18.11,18.71,19.5ZM13,3.5C13.73,2.67,14.94,2.04,15.94,2C16.07,3.17,15.6,4.35,14.9,5.19C14.21,6.04,13.07,6.7,11.95,6.61C11.8,5.46,12.36,4.26,13,3.5Z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">macOS</h3>
+                    <p class="text-gray-400 mb-4">For Intel & Apple Silicon</p>
+                    <a href="https://github.com/prongbang/ai-upscaler/releases/tag/0.1.1"
+                        class="block bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        Download for macOS
+                    </a>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="https://github.com/prongbang/ai-upscaler"
+                    class="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    <span>View project on GitHub</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-gradient py-16">
+        <div class="container mx-auto px-4">
+            <div class="bg-gray-900 rounded-xl p-8 max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="md:w-2/3 mb-6 md:mb-0">
+                        <h2 class="text-2xl font-bold mb-3">Ready to Enhance Your Media?</h2>
+                        <p class="text-gray-300">Download AI-Upscaler today and transform your images and videos with
+                            cutting-edge AI technology.</p>
+                    </div>
+                    <div>
+                        <a href="#download"
+                            class="bg-white text-gray-900 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium inline-block transition-colors">
+                            Get Started Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M14 10L12 11L10 10M20 7L18 8M18 6L20 7M20 7V9.5M14 4L12 3L10 4M4 7L6 8M4 7L6 6M4 7V9.5M12 21L10 20M12 21L14 20M12 21V18.5M6 18L4 17V14.5M18 18L20 17V14.5"
+                            stroke="url(#footer-gradient)" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <defs>
+                            <linearGradient id="footer-gradient" x1="4" y1="3" x2="20" y2="21"
+                                gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#3b82f6" />
+                                <stop offset="50%" stop-color="#6366f1" />
+                                <stop offset="100%" stop-color="#8b5cf6" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="text-xl font-bold">AI-Upscaler</span>
+                </div>
+
+                <div class="flex space-x-6 mb-4 md:mb-0">
+                    <a href="#features" class="text-gray-400 hover:text-white transition-colors">Features</a>
+                    <a href="#how-it-works" class="text-gray-400 hover:text-white transition-colors">How It Works</a>
+                    <a href="#download" class="text-gray-400 hover:text-white transition-colors">Download</a>
+                    <a href="https://github.com/prongbang/ai-upscaler"
+                        class="text-gray-400 hover:text-white transition-colors">GitHub</a>
+                </div>
+
+                <div>
+                    <a href="https://www.buymeacoffee.com/prongbang"
+                        class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-lg transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z" />
+                        </svg>
+                        <span>Buy Me A Coffee</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2025 AI-Upscaler. Created by <a href="https://github.com/prongbang"
+                        class="text-blue-400 hover:text-blue-300">prongbang</a>. Powered by Real-ESRGAN technology.</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
+
 </html>
