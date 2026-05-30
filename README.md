@@ -6,26 +6,42 @@
 
 ## ✨ Features
 
-- **Multiple Upscale Options** - Choose from 2x, 3x, or 4x scaling factors to meet your needs
-- **High-Quality Image Enhancement** - Transform low-resolution images into crisp, detailed versions
-- **Video Upscaling** - Process videos frame-by-frame to increase resolution while preserving quality
+- **Image Upscaling** - Enhance png, jpeg, jpg, and webp images with 2x, 3x, or 4x scaling
+- **Video Upscaling** - Process videos frame-by-frame while preserving quality
+- **Download Model Manager** - View installed model packs and download missing model files from the app
+- **Task Queue** - Track active upscale jobs, progress, preview actions, output folders, and cleanup actions
+- **History** - Review completed renders and reopen previews or output folders later
+- **GPU Selection** - Choose Auto or a specific GPU ID for Vulkan-based processing
+- **Output Controls** - Select output format, pixel format, and optional compression settings
 - **Cross-Platform Support** - Available for Windows, Linux, and macOS
 
 ## 📥 Download
 
 Get the latest portable executable files:
 
-[![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/prongbang/ai-upscaler/releases/tag/0.1.1)
-[![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/prongbang/ai-upscaler/releases/tag/0.1.1)
-[![macOS](https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/prongbang/ai-upscaler/releases/tag/0.1.1)
+[![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/prongbang/ai-upscaler/releases)
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/prongbang/ai-upscaler/releases)
+[![macOS](https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/prongbang/ai-upscaler/releases)
 
 ## 📷 Screenshots
 
-### Image Upscaling
-![Image Upscaling Interface](screenshots/img.png)
+### Image Selection
+![Image Selection Interface](screenshots/img.png)
+
+### Image Preview
+![Image Preview Interface](screenshots/image.png)
 
 ### Video Upscaling
-![Video Upscaling Interface](screenshots/img_1.png)
+![Video Upscaling Interface](screenshots/video.png)
+
+### Download Model
+![Download Model Interface](screenshots/download-model.png)
+
+### Task Queue
+![Task Queue Interface](screenshots/task.png)
+
+### History
+![History Interface](screenshots/history.png)
 
 ## 🧠 Models
 
@@ -37,10 +53,11 @@ AI-Upscaler uses advanced neural network models to deliver exceptional results.
 
 AI-Upscaler leverages Real-ESRGAN (Enhanced Super-Resolution Generative Adversarial Networks) to intelligently enhance your media:
 
-1. **Upload** your image or video file
-2. **Select** your desired upscale factor (2x, 3x, or 4x)
-3. **Process** with our advanced AI algorithm
-4. **Download** your high-resolution result
+1. **Select** your image or video file
+2. **Download** any missing model files when needed
+3. **Configure** the model, upscale factor, GPU, output format, and compression settings
+4. **Process** the media and monitor progress in Tasks
+5. **Preview** the result or reopen completed renders from History
 
 ## 📄 License
 

@@ -1,466 +1,1360 @@
-</html>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="AI-Upscaler is a modern image and video upscaling desktop app powered by Real-ESRGAN.">
     <title>AI-Upscaler - Image & Video Enhancement</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23060910'/%3E%3Crect x='16' y='30' width='18' height='18' rx='4' fill='%232fd7c4'/%3E%3Crect x='30' y='16' width='18' height='18' rx='4' fill='%235c8cff'/%3E%3C/svg%3E">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+        :root {
+            --bg: #060910;
+            --bg-2: #0c1220;
+            --panel: #101827;
+            --panel-2: #151f31;
+            --line: rgba(159, 177, 204, 0.18);
+            --line-strong: rgba(55, 232, 211, 0.44);
+            --text: #f6f8fb;
+            --muted: #9aa6b8;
+            --soft: #c7d0df;
+            --cyan: #2fd7c4;
+            --green: #a7f35a;
+            --amber: #f7c948;
+            --coral: #ff7f66;
+            --blue: #5c8cff;
+            --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+            --radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
+            margin: 0;
+            min-width: 320px;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--text);
+            background:
+                linear-gradient(180deg, rgba(6, 9, 16, 0.9), #060910 620px),
+                radial-gradient(circle at 20% 0%, rgba(47, 215, 196, 0.14), transparent 28rem),
+                radial-gradient(circle at 80% 6%, rgba(247, 201, 72, 0.1), transparent 24rem),
+                var(--bg);
+            letter-spacing: 0;
         }
 
-        .hero-gradient {
-            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 50%, #8b5cf6 100%);
+        body::before {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+            content: "";
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.68), transparent 72%);
         }
 
-        .feature-gradient-1 {
-            background: linear-gradient(135deg, #3b82f6, #2dd4bf);
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
-        .feature-gradient-2 {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        img {
+            display: block;
+            max-width: 100%;
         }
 
-        .feature-gradient-3 {
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
         }
 
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
+        .skip-link {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            z-index: 20;
+            padding: 10px 14px;
+            color: #06100f;
+            background: var(--cyan);
+            border-radius: var(--radius);
+            transform: translateY(-150%);
+            transition: transform 180ms ease;
         }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 15;
+            width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(6, 9, 16, 0.78);
+            backdrop-filter: blur(18px);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 72px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+        }
+
+        .brand-mark {
+            position: relative;
+            width: 34px;
+            height: 34px;
+            border: 1px solid rgba(47, 215, 196, 0.32);
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, rgba(47, 215, 196, 0.22), rgba(92, 140, 255, 0.14));
+            box-shadow: 0 0 28px rgba(47, 215, 196, 0.18);
+        }
+
+        .brand-mark::before,
+        .brand-mark::after {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            content: "";
+            background: var(--cyan);
+            border-radius: 3px;
+            animation: pulse-tile 2.8s ease-in-out infinite;
+        }
+
+        .brand-mark::before {
+            left: 8px;
+            bottom: 8px;
+        }
+
+        .brand-mark::after {
+            top: 8px;
+            right: 8px;
+            background: var(--blue);
+            animation-delay: 0.8s;
+        }
+
+        .brand > span:last-child {
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            padding: 10px 12px;
+            color: var(--soft);
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: var(--radius);
+            transition: color 180ms ease, background 180ms ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 18px;
+            font-weight: 800;
+            border: 1px solid transparent;
+            border-radius: var(--radius);
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, color 180ms ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            color: #041211;
+            background: linear-gradient(135deg, var(--cyan), var(--green));
+            box-shadow: 0 16px 34px rgba(47, 215, 196, 0.22);
+        }
+
+        .btn-secondary {
+            color: var(--text);
+            border-color: rgba(255, 255, 255, 0.16);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .hero {
+            position: relative;
+            display: grid;
+            align-items: end;
+            min-height: 86vh;
+            padding: 148px 0 64px;
+            overflow: hidden;
+            background:
+                linear-gradient(90deg, rgba(6, 9, 16, 0.92) 0%, rgba(6, 9, 16, 0.74) 40%, rgba(6, 9, 16, 0.22) 100%),
+                linear-gradient(180deg, rgba(6, 9, 16, 0.26), #060910 96%),
+                url("screenshots/image.png") center / cover no-repeat;
+        }
+
+        .hero::after {
+            position: absolute;
+            inset: auto 0 0;
+            height: 170px;
+            pointer-events: none;
+            content: "";
+            background: linear-gradient(180deg, transparent, var(--bg));
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 650px) minmax(270px, 360px);
+            gap: 72px;
+            align-items: end;
+        }
+
+        .hero-copy {
+            padding-bottom: 28px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 22px;
+            color: var(--cyan);
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 36px;
+            height: 2px;
+            content: "";
+            background: currentColor;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        h1 {
+            max-width: 620px;
+            margin-bottom: 24px;
+            font-size: 72px;
+            line-height: 0.98;
+            font-weight: 800;
+        }
+
+        .hero-lead {
+            max-width: 590px;
+            margin-bottom: 32px;
+            color: var(--soft);
+            font-size: 19px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            max-width: 560px;
+            margin-top: 44px;
+        }
+
+        .stat {
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius);
+            background: rgba(8, 13, 23, 0.72);
+            backdrop-filter: blur(14px);
+        }
+
+        .stat strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--text);
+            font-size: 22px;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .stat-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .stat-badge {
+            display: inline-flex;
+            align-items: center;
+            min-height: 24px;
+            padding: 0 8px;
+            color: var(--soft);
+            font-size: 12px;
+            font-weight: 800;
+            border: 1px solid rgba(47, 215, 196, 0.28);
+            border-radius: 999px;
+            background: rgba(47, 215, 196, 0.08);
+        }
+
+        .hero-stack {
+            display: grid;
+            gap: 12px;
+            padding-bottom: 28px;
+        }
+
+        .mini-panel {
+            position: relative;
+            display: grid;
+            grid-template-columns: 74px 1fr;
+            gap: 14px;
+            align-items: center;
+            min-height: 102px;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: var(--radius);
+            background: rgba(12, 18, 32, 0.78);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            animation: float-card 6s ease-in-out infinite;
+            backdrop-filter: blur(18px);
+        }
+
+        .mini-panel:nth-child(2) {
+            animation-delay: 0.8s;
+        }
+
+        .mini-panel:nth-child(3) {
+            animation-delay: 1.6s;
+        }
+
+        .mini-panel:nth-child(4) {
+            animation-delay: 2.4s;
+        }
+
+        .mini-panel::after {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            content: "";
+            background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.08) 44%, transparent 64%);
+            transform: translateX(-120%);
+            animation: panel-shine 6.5s ease-in-out infinite;
+        }
+
+        .mini-panel img {
+            width: 74px;
+            height: 74px;
+            object-fit: cover;
+            border: 1px solid rgba(47, 215, 196, 0.24);
+            border-radius: 6px;
+        }
+
+        .mini-panel h2 {
+            margin-bottom: 5px;
+            font-size: 17px;
+        }
+
+        .mini-panel p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .section {
+            position: relative;
+            padding: 96px 0;
+        }
+
+        .section-header {
+            display: grid;
+            grid-template-columns: minmax(0, 0.78fr) minmax(260px, 0.42fr);
+            gap: 48px;
+            align-items: end;
+            margin-bottom: 44px;
+        }
+
+        .section-kicker {
+            margin-bottom: 14px;
+            color: var(--amber);
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            margin-bottom: 0;
+            font-size: 42px;
+            line-height: 1.12;
+        }
+
+        .section-text {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .feature-card {
+            position: relative;
+            min-height: 268px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: linear-gradient(180deg, rgba(21, 31, 49, 0.88), rgba(12, 18, 32, 0.82));
+            overflow: hidden;
+            transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--line-strong);
+            background: linear-gradient(180deg, rgba(21, 31, 49, 0.96), rgba(9, 16, 27, 0.94));
+        }
+
+        .feature-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            margin-bottom: 28px;
+            color: #06100f;
+            font-size: 14px;
+            font-weight: 800;
+            background: var(--cyan);
+            border-radius: var(--radius);
+        }
+
+        .feature-card:nth-child(2) .feature-number {
+            background: var(--blue);
+            color: var(--text);
+        }
+
+        .feature-card:nth-child(3) .feature-number {
+            background: var(--amber);
+        }
+
+        .feature-card:nth-child(4) .feature-number {
+            background: var(--coral);
+        }
+
+        .feature-card:nth-child(5) .feature-number {
+            background: var(--green);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .feature-card p {
+            margin-bottom: 0;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .showcase {
+            background:
+                linear-gradient(180deg, rgba(12, 18, 32, 0.62), rgba(6, 9, 16, 0)),
+                var(--bg);
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+
+        .showcase-copy {
+            position: sticky;
+            top: 112px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .mode-card {
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(16, 24, 39, 0.78);
+            transition: border-color 180ms ease, transform 180ms ease;
+        }
+
+        .mode-card:hover {
+            border-color: var(--line-strong);
+            transform: translateX(4px);
+        }
+
+        .mode-card strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+
+        .mode-card span {
+            display: block;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .screen-list {
+            display: grid;
+            gap: 22px;
+        }
+
+        .screen-card {
+            position: relative;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(16, 24, 39, 0.86);
+            box-shadow: 0 18px 70px rgba(0, 0, 0, 0.32);
+            overflow: hidden;
+        }
+
+        .screen-card::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            width: 100%;
+            height: 2px;
+            content: "";
+            background: linear-gradient(90deg, var(--cyan), var(--amber), var(--coral));
+            transform: translateX(-100%);
+            animation: scan-top 5.6s ease-in-out infinite;
+        }
+
+        .screen-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            min-height: 58px;
+            padding: 0 18px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .screen-meta h3 {
+            margin-bottom: 0;
+            font-size: 16px;
+        }
+
+        .screen-tag {
+            color: var(--cyan);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .screen-media {
+            position: relative;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            background: #05070d;
+        }
+
+        .screen-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.01);
+            transition: transform 500ms ease;
+        }
+
+        .screen-card:hover .screen-media img {
+            transform: scale(1.045);
+        }
+
+        .image-pair {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .image-pair .screen-card {
+            height: 100%;
+        }
+
+        .workflow {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .step {
+            position: relative;
+            min-height: 216px;
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(16, 24, 39, 0.82);
+            overflow: hidden;
+        }
+
+        .step::after {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            color: rgba(255, 255, 255, 0.08);
+            font-size: 68px;
+            font-weight: 800;
+            content: attr(data-step);
+        }
+
+        .step h3 {
+            margin-bottom: 12px;
+            font-size: 21px;
+        }
+
+        .step p {
+            margin-bottom: 0;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .download {
+            background:
+                linear-gradient(180deg, rgba(6, 9, 16, 0), rgba(12, 18, 32, 0.86)),
+                var(--bg);
+        }
+
+        .download-panel {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.55fr);
+            gap: 34px;
+            align-items: center;
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(16, 24, 39, 0.84);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .download-shot {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(47, 215, 196, 0.24);
+            border-radius: var(--radius);
+            background: #05070d;
+        }
+
+        .download-shot img {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+        }
+
+        .platforms {
+            display: grid;
+            gap: 12px;
+        }
+
+        .platform {
+            display: grid;
+            grid-template-columns: 42px 1fr;
+            gap: 14px;
+            align-items: center;
+            padding: 14px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(6, 9, 16, 0.58);
+            transition: border-color 180ms ease, transform 180ms ease;
+        }
+
+        .platform:hover {
+            border-color: var(--line-strong);
+            transform: translateY(-3px);
+        }
+
+        .platform-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            color: #06100f;
+            font-weight: 800;
+            background: var(--cyan);
+            border-radius: var(--radius);
+        }
+
+        .platform:nth-child(2) .platform-icon {
+            color: var(--text);
+            background: var(--blue);
+        }
+
+        .platform:nth-child(3) .platform-icon {
+            background: var(--amber);
+        }
+
+        .platform strong {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .platform > span:last-child {
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .platform > span:last-child > span {
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .site-footer {
+            padding: 38px 0;
+            color: var(--muted);
+            border-top: 1px solid var(--line);
+            background: #05070d;
+        }
+
+        .footer-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 650ms ease, transform 650ms ease;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes pulse-tile {
+
+            0%,
+            100% {
+                opacity: 0.72;
+                transform: translate(0, 0);
             }
 
             50% {
-                transform: translateY(-15px);
-            }
-
-            100% {
-                transform: translateY(0px);
+                opacity: 1;
+                transform: translate(3px, -3px);
             }
         }
 
-        .cta-gradient {}
+        @keyframes float-card {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes panel-shine {
+
+            0%,
+            45% {
+                transform: translateX(-120%);
+            }
+
+            70%,
+            100% {
+                transform: translateX(120%);
+            }
+        }
+
+        @keyframes scan-top {
+
+            0%,
+            40% {
+                transform: translateX(-100%);
+            }
+
+            76%,
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @media (max-width: 980px) {
+            .hero {
+                min-height: auto;
+                padding-top: 126px;
+            }
+
+            .hero-grid,
+            .section-header,
+            .showcase-grid,
+            .download-panel {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            h1 {
+                font-size: 54px;
+            }
+
+            .hero-stack,
+            .showcase-copy {
+                position: static;
+                max-width: none;
+            }
+
+            .feature-grid,
+            .workflow {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 720px) {
+            .container {
+                width: min(100% - 28px, 1180px);
+            }
+
+            .site-header {
+                position: absolute;
+                background: rgba(6, 9, 16, 0.92);
+            }
+
+            .nav {
+                align-items: flex-start;
+                min-height: 0;
+                padding: 14px 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .brand > span:last-child {
+                font-size: 16px;
+            }
+
+            .hero {
+                min-height: 720px;
+                padding: 118px 0 44px;
+                background-position: 62% center;
+            }
+
+            h1 {
+                font-size: 44px;
+            }
+
+            .hero-lead {
+                font-size: 17px;
+            }
+
+            .hero-actions,
+            .stats,
+            .image-pair,
+            .feature-grid,
+            .workflow {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .stats {
+                display: grid;
+            }
+
+            .section {
+                padding: 72px 0;
+            }
+
+            .section-title {
+                font-size: 34px;
+            }
+
+            .screen-meta {
+                align-items: flex-start;
+                flex-direction: column;
+                justify-content: center;
+                padding: 14px;
+            }
+
+            .screen-media {
+                aspect-ratio: 4 / 3;
+            }
+
+            .footer-row {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 430px) {
+            h1 {
+                font-size: 38px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .mini-panel {
+                grid-template-columns: 60px 1fr;
+            }
+
+            .mini-panel img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .download-panel {
+                padding: 16px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="bg-[#2e3267] w-full z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M14 10L12 11L10 10M20 7L18 8M18 6L20 7M20 7V9.5M14 4L12 3L10 4M4 7L6 8M4 7L6 6M4 7V9.5M12 21L10 20M12 21L14 20M12 21V18.5M6 18L4 17V14.5M18 18L20 17V14.5"
-                        stroke="url(#nav-gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <defs>
-                        <linearGradient id="nav-gradient" x1="4" y1="3" x2="20" y2="21" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#4070ff" />
-                            <stop offset="100%" stop-color="#8f5bff" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-                <span class="text-xl font-bold">AI-Upscaler</span>
-            </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#features" class="hover:text-indigo-300 transition-colors">Features</a>
-                <a href="#how-it-works" class="hover:text-indigo-300 transition-colors">How It Works</a>
-                <a href="#download" class="hover:text-indigo-300 transition-colors">Download</a>
-            </div>
-            <a href="#download"
-                class="bg-[#4055ff] text-white px-4 py-2 rounded-lg hover:bg-[#3045ee] transition duration-300">
-                Get Started
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <nav class="container nav" aria-label="Primary navigation">
+            <a class="brand" href="#top" aria-label="AI-Upscaler home">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span>AI-Upscaler</span>
             </a>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="bg-[#576aff] pt-20 pb-0">
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Transform Your Media with AI</h1>
-                    <p class="text-xl mb-8 text-gray-100">Enhance your images and videos with cutting-edge AI
-                        technology. Up to 4x resolution boost with stunning details.</p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#download"
-                            class="bg-white text-gray-900 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium text-center transition-colors">
-                            Download Now
-                        </a>
-                        <a href="#features"
-                            class="border border-white border-opacity-25 hover:border-opacity-50 px-6 py-3 rounded-lg font-medium text-center transition-colors">
-                            Learn More
-                        </a>
-                    </div>
-                </div>
-                <div class="md:w-1/2">
-                    <div class="bg-[#475adf] bg-opacity-70 p-6 rounded-xl">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <img src="https://github.com/prongbang/ai-upscaler/raw/main/screenshots/before.jpeg"
-                                    alt="Before" class="rounded-lg">
-                                <p class="text-center mt-2">Before</p>
-                            </div>
-                            <div class="float-animation">
-                                <img src="https://github.com/prongbang/ai-upscaler/raw/main/screenshots/after.jpeg"
-                                    alt="After" class="rounded-lg">
-                                <p class="text-center mt-2">After (4x)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Wave -->
-        <div class="w-full overflow-hidden mt-16">
-            <svg viewBox="0 0 1440 150" preserveAspectRatio="none" class="w-full h-24 fill-[#0b111e]">
-                <path
-                    d="M0,32L80,48C160,64,320,96,480,101.3C640,107,800,85,960,74.7C1120,64,1280,64,1360,64L1440,64L1440,150L1360,150C1280,150,1120,150,960,150C800,150,640,150,480,150C320,150,160,150,80,150L0,150Z">
-                </path>
-            </svg>
-        </div>
-    </section>
-
-    <!-- Blue strip section -->
-    <section class="bg-[#576aff] py-8">
-        <div class="container mx-auto px-4">
-            <!-- This section is intentionally empty to match the image -->
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="py-16 bg-[#0b111e]">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Powerful AI-Enhanced Features</h2>
-                <p class="text-xl text-gray-400">Our state-of-the-art technology delivers exceptional results</p>
+            <div class="nav-links" aria-label="Page sections">
+                <a href="#features">Features</a>
+                <a href="#showcase">Screens</a>
+                <a href="#workflow">Workflow</a>
+                <a href="#download">Download</a>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div
-                    class="bg-gray-800 rounded-xl p-6 hover:shadow-lg transition duration-300 border border-gray-700 hover:border-blue-500 transform hover:-translate-y-1">
-                    <div class="feature-gradient-1 w-14 h-14 rounded-full flex items-center justify-center mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Image Upscaling</h3>
-                    <p class="text-gray-400">Transform low-resolution images into crisp, detailed versions with our
-                        advanced AI technology. Support for 2x, 3x, and 4x scaling.</p>
-                </div>
+            <a class="btn btn-primary" href="#download">Get App</a>
+        </nav>
+    </header>
 
-                <!-- Feature 2 -->
-                <div
-                    class="bg-gray-800 rounded-xl p-6 hover:shadow-lg transition duration-300 border border-gray-700 hover:border-indigo-500 transform hover:-translate-y-1">
-                    <div class="feature-gradient-2 w-14 h-14 rounded-full flex items-center justify-center mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Video Upscaling</h3>
-                    <p class="text-gray-400">Process videos frame-by-frame to increase resolution while preserving
-                        quality. Enjoy your favorite content in higher definition.</p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div
-                    class="bg-gray-800 rounded-xl p-6 hover:shadow-lg transition duration-300 border border-gray-700 hover:border-purple-500 transform hover:-translate-y-1">
-                    <div class="feature-gradient-3 w-14 h-14 rounded-full flex items-center justify-center mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Advanced Models</h3>
-                    <p class="text-gray-400">Powered by Real-ESRGAN technology. Choose from various AI models to get
-                        the best results for your specific media type.</p>
-                </div>
-            </div>
-
-            <div class="mt-16 p-8 bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl border border-gray-700">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w-2/3 mb-6 md:mb-0 md:pr-8">
-                        <h3 class="text-2xl font-bold mb-4">Cross-Platform Support</h3>
-                        <p class="text-gray-300">AI-Upscaler works seamlessly across all major operating systems.
-                            Use it on your preferred platform without compromising on features or performance.</p>
-                    </div>
-                    <div class="md:w-1/3 flex flex-wrap justify-center gap-4">
-                        <div class="bg-gray-900 bg-opacity-70 p-3 rounded-lg flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            <span>Windows</span>
-                        </div>
-                        <div class="bg-gray-900 bg-opacity-70 p-3 rounded-lg flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            <span>Linux</span>
-                        </div>
-                        <div class="bg-gray-900 bg-opacity-70 p-3 rounded-lg flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-400" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path
-                                    d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-                            </svg>
-                            <span>macOS</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How it Works Section -->
-    <section id="how-it-works" class="py-16 bg-gray-800">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">How It Works</h2>
-                <p class="text-xl text-gray-400">AI-Upscaler uses advanced neural networks to enhance your media in just
-                    a few simple steps</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Step 1 -->
-                <div class="bg-gray-900 rounded-xl p-6 border border-gray-700">
-                    <div
-                        class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-xl font-bold mb-6">
-                        1</div>
-                    <h3 class="text-xl font-bold mb-3">Upload Your Media</h3>
-                    <p class="text-gray-400 mb-4">Simply drag and drop your image or video file into the application.
+    <main id="main">
+        <section id="top" class="hero" aria-label="AI-Upscaler hero">
+            <div class="container hero-grid">
+                <div class="hero-copy reveal">
+                    <p class="eyebrow">Real-ESRGAN desktop upscaling</p>
+                    <h1>AI-Upscaler</h1>
+                    <p class="hero-lead">
+                        A sharp, GPU-ready workspace for improving images and videos with 2x, 3x, and 4x upscale
+                        pipelines. Built for fast previews, clean queues, and repeatable exports.
                     </p>
-                </div>
 
-                <!-- Step 2 -->
-                <div class="bg-gray-900 rounded-xl p-6 border border-gray-700">
-                    <div
-                        class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-xl font-bold mb-6">
-                        2</div>
-                    <h3 class="text-xl font-bold mb-3">Choose Settings</h3>
-                    <p class="text-gray-400 mb-4">Select your upscaling factor (2x, 3x, or 4x) and choose the AI model.
-                    </p>
-                </div>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#showcase">Explore Features</a>
+                        <a class="btn btn-secondary" href="https://github.com/prongbang/ai-upscaler">View GitHub</a>
+                    </div>
 
-                <!-- Step 3 -->
-                <div class="bg-gray-900 rounded-xl p-6 border border-gray-700">
-                    <div
-                        class="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center text-xl font-bold mb-6">
-                        3</div>
-                    <h3 class="text-xl font-bold mb-3">Process & Download</h3>
-                    <p class="text-gray-400 mb-4">Let our AI work its magic and then download your enhanced result.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Screenshots Section -->
-    <section class="py-16 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">See It In Action</h2>
-                <p class="text-xl text-gray-400">AI-Upscaler features an intuitive interface for both beginners and
-                    professionals</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
-                    <div class="p-3 border-b border-gray-700 flex justify-between items-center">
-                        <p class="font-medium">Image Upscaling</p>
-                        <div class="flex space-x-2">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <div class="stats" aria-label="Product highlights">
+                        <div class="stat">
+                            <strong>4x</strong>
+                            <span>Max upscale</span>
+                        </div>
+                        <div class="stat">
+                            <strong>GPU</strong>
+                            <span>Vulkan compute</span>
+                        </div>
+                        <div class="stat">
+                            <strong>3 OS</strong>
+                            <div class="stat-badges" aria-label="Supported operating systems">
+                                <span class="stat-badge">Windows</span>
+                                <span class="stat-badge">Linux</span>
+                                <span class="stat-badge">macOS</span>
+                            </div>
                         </div>
                     </div>
-                    <img src="https://github.com/prongbang/ai-upscaler/raw/main/screenshots/image.png" alt="Image Upscaling Screenshot" class="w-full h-auto">
                 </div>
 
-                <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
-                    <div class="p-3 border-b border-gray-700 flex justify-between items-center">
-                        <p class="font-medium">Video Upscaling</p>
-                        <div class="flex space-x-2">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <div class="hero-stack" aria-label="Feature preview cards">
+                    <article class="mini-panel">
+                        <img src="screenshots/image.png" alt="Image upscaling comparison screen">
+                        <div>
+                            <h2>Image Upscale</h2>
+                            <p>Before-and-after comparison with crisp high-resolution output.</p>
                         </div>
-                    </div>
-                    <img src="https://github.com/prongbang/ai-upscaler/raw/main/screenshots/video.png" alt="Video Upscaling Screenshot" class="w-full h-auto">
+                    </article>
+                    <article class="mini-panel">
+                        <img src="screenshots/video.png" alt="Video upscaling screen">
+                        <div>
+                            <h2>Video Upscale</h2>
+                            <p>Export-ready video settings, model selection, and pixel formats.</p>
+                        </div>
+                    </article>
+                    <article class="mini-panel">
+                        <img src="screenshots/download-model.png" alt="Model download screen">
+                        <div>
+                            <h2>Download Model</h2>
+                            <p>Manage model packages and see download status before rendering.</p>
+                        </div>
+                    </article>
+                    <article class="mini-panel">
+                        <img src="screenshots/task.png" alt="Task queue screen">
+                        <div>
+                            <h2>Task Queue</h2>
+                            <p>Track active processing jobs and jump to folders instantly.</p>
+                        </div>
+                    </article>
+                    <article class="mini-panel">
+                        <img src="screenshots/history.png" alt="History screen">
+                        <div>
+                            <h2>History</h2>
+                            <p>Review completed renders and reopen previews without hunting files.</p>
+                        </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Download Section -->
-    <section id="download" class="py-16 bg-gradient-to-b from-gray-800 to-black">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Download AI-Upscaler Today</h2>
-                <p class="text-xl text-gray-400">Get started with our free portable executable files for your preferred
-                    platform</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <!-- Windows Download -->
-                <div
-                    class="bg-gray-900 rounded-xl p-6 text-center border border-gray-700 hover:border-blue-500 transition duration-300">
-                    <div class="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path
-                                d="M21 2H3C1.9 2 1 2.9 1 4V16C1 17.1 1.9 18 3 18H10V20H8V22H16V20H14V18H21C22.1 18 23 17.1 23 16V4C23 2.9 22.1 2 21 2ZM21 16H3V4H21V16Z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Windows</h3>
-                    <p class="text-gray-400 mb-4">For Windows 10/11 (64-bit)</p>
-                    <a href="https://github.com/prongbang/ai-upscaler/releases/tag/0.1.1"
-                        class="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
-                        Download for Windows
-                    </a>
-                </div>
-
-                <!-- Linux Download -->
-                <div
-                    class="bg-gray-900 rounded-xl p-6 text-center border border-gray-700 hover:border-indigo-500 transition duration-300">
-                    <div class="w-16 h-16 mx-auto mb-4 bg-indigo-600 rounded-full flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path
-                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-                            <path d="M12 8l-4 4h3v4h2v-4h3z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Linux</h3>
-                    <p class="text-gray-400 mb-4">For Ubuntu, Debian, and more</p>
-                    <a href="https://github.com/prongbang/ai-upscaler/releases/tag/0.1.1"
-                        class="block bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors">
-                        Download for Linux
-                    </a>
-                </div>
-
-                <!-- macOS Download -->
-                <div
-                    class="bg-gray-900 rounded-xl p-6 text-center border border-gray-700 hover:border-purple-500 transition duration-300">
-                    <div class="w-16 h-16 mx-auto mb-4 bg-purple-600 rounded-full flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path
-                                d="M18.71,19.5C17.88,20.74,17,21.95,15.66,21.97C14.32,22,13.89,21.18,12.37,21.18C10.84,21.18,10.37,21.95,9.1,22C7.79,22.05,6.8,20.68,5.96,19.47C4.25,17,2.94,12.45,4.7,9.39C5.57,7.87,7.13,6.91,8.82,6.88C10.1,6.86,11.32,7.75,12.11,7.75C12.89,7.75,14.37,6.68,15.92,6.84C16.57,6.87,18.39,7.1,19.56,8.82C19.47,8.88,17.39,10.1,17.41,12.63C17.44,15.65,20.06,16.66,20.09,16.67C20.06,16.74,19.67,18.11,18.71,19.5ZM13,3.5C13.73,2.67,14.94,2.04,15.94,2C16.07,3.17,15.6,4.35,14.9,5.19C14.21,6.04,13.07,6.7,11.95,6.61C11.8,5.46,12.36,4.26,13,3.5Z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">macOS</h3>
-                    <p class="text-gray-400 mb-4">For Intel & Apple Silicon</p>
-                    <a href="https://github.com/prongbang/ai-upscaler/releases/tag/0.1.1"
-                        class="block bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors">
-                        Download for macOS
-                    </a>
-                </div>
-            </div>
-
-            <div class="text-center mt-12">
-                <a href="https://github.com/prongbang/ai-upscaler"
-                    class="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                    </svg>
-                    <span>View project on GitHub</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-gradient py-16">
-        <div class="container mx-auto px-4">
-            <div class="bg-gray-900 rounded-xl p-8 max-w-4xl mx-auto">
-                <div class="flex flex-col md:flex-row items-center justify-between">
-                    <div class="md:w-2/3 mb-6 md:mb-0">
-                        <h2 class="text-2xl font-bold mb-3">Ready to Enhance Your Media?</h2>
-                        <p class="text-gray-300">Download AI-Upscaler today and transform your images and videos with
-                            cutting-edge AI technology.</p>
-                    </div>
+        <section id="features" class="section">
+            <div class="container">
+                <div class="section-header reveal">
                     <div>
-                        <a href="#download"
-                            class="bg-white text-gray-900 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium inline-block transition-colors">
-                            Get Started Now
+                        <p class="section-kicker">Upscale features</p>
+                        <h2 class="section-title">A focused workspace for every upscale stage.</h2>
+                    </div>
+                    <p class="section-text">
+                        The interface keeps selection, compute settings, output format, progress, and render history
+                        close together so the app feels fast even when the job is heavy.
+                    </p>
+                </div>
+
+                <div class="feature-grid">
+                    <article class="feature-card reveal">
+                        <span class="feature-number">01</span>
+                        <h3>Image</h3>
+                        <p>Upscale png, jpeg, jpg, and webp files with an instant visual comparison once processing is
+                            complete.</p>
+                    </article>
+                    <article class="feature-card reveal">
+                        <span class="feature-number">02</span>
+                        <h3>Video</h3>
+                        <p>Process clips frame-by-frame with practical export controls for mp4 and common video
+                            pipelines.</p>
+                    </article>
+                    <article class="feature-card reveal">
+                        <span class="feature-number">03</span>
+                        <h3>Download Model</h3>
+                        <p>Check installed model packs, download missing files, and keep the app ready before starting
+                            a job.</p>
+                    </article>
+                    <article class="feature-card reveal">
+                        <span class="feature-number">04</span>
+                        <h3>Task</h3>
+                        <p>Monitor current jobs, progress state, preview actions, and output folders from a single
+                            queue.</p>
+                    </article>
+                    <article class="feature-card reveal">
+                        <span class="feature-number">05</span>
+                        <h3>History</h3>
+                        <p>Keep completed results discoverable with file name, scale, timestamp, and quick actions.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="showcase" class="section showcase">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div>
+                        <p class="section-kicker">Screenshots</p>
+                        <h2 class="section-title">Dark, precise, and built around the actual upscale flow.</h2>
+                    </div>
+                    <p class="section-text">
+                        The new page uses the app screenshots as the main visual system, with motion layered around
+                        real UI states instead of generic decoration.
+                    </p>
+                </div>
+
+                <div class="showcase-grid">
+                    <aside class="showcase-copy reveal" aria-label="Mode summary">
+                        <a class="mode-card" href="#screen-image">
+                            <strong>Image workspace</strong>
+                            <span>Select source images, model, scale, GPU, format, and compression.</span>
+                        </a>
+                        <a class="mode-card" href="#screen-video">
+                            <strong>Video workspace</strong>
+                            <span>Configure video output and keep the same upscale control language.</span>
+                        </a>
+                        <a class="mode-card" href="#screen-model">
+                            <strong>Model downloads</strong>
+                            <span>Review installed model files and download missing model groups.</span>
+                        </a>
+                        <a class="mode-card" href="#screen-task">
+                            <strong>Task monitor</strong>
+                            <span>See active progress, finished state, preview, folder, and cleanup actions.</span>
+                        </a>
+                        <a class="mode-card" href="#screen-history">
+                            <strong>History log</strong>
+                            <span>Return to completed results after the render is done.</span>
+                        </a>
+                    </aside>
+
+                    <div class="screen-list">
+                        <div class="image-pair">
+                            <article id="screen-image" class="screen-card reveal">
+                                <div class="screen-meta">
+                                    <h3>Image selection state</h3>
+                                    <span class="screen-tag">img.png</span>
+                                </div>
+                                <div class="screen-media">
+                                    <img src="screenshots/img.png" alt="AI-Upscaler image selection screen" loading="lazy">
+                                </div>
+                            </article>
+
+                            <article class="screen-card reveal">
+                                <div class="screen-meta">
+                                    <h3>Image preview state</h3>
+                                    <span class="screen-tag">image.png</span>
+                                </div>
+                                <div class="screen-media">
+                                    <img src="screenshots/image.png" alt="AI-Upscaler image preview comparison screen"
+                                        loading="lazy">
+                                </div>
+                            </article>
+                        </div>
+
+                        <article id="screen-video" class="screen-card reveal">
+                            <div class="screen-meta">
+                                <h3>Video upscale mode</h3>
+                                <span class="screen-tag">video.png</span>
+                            </div>
+                            <div class="screen-media">
+                                <img src="screenshots/video.png" alt="AI-Upscaler video upscaling screen" loading="lazy">
+                            </div>
+                        </article>
+
+                        <article id="screen-model" class="screen-card reveal">
+                            <div class="screen-meta">
+                                <h3>Download model manager</h3>
+                                <span class="screen-tag">download-model.png</span>
+                            </div>
+                            <div class="screen-media">
+                                <img src="screenshots/download-model.png" alt="AI-Upscaler model download screen"
+                                    loading="lazy">
+                            </div>
+                        </article>
+
+                        <article id="screen-task" class="screen-card reveal">
+                            <div class="screen-meta">
+                                <h3>Task queue</h3>
+                                <span class="screen-tag">task.png</span>
+                            </div>
+                            <div class="screen-media">
+                                <img src="screenshots/task.png" alt="AI-Upscaler task queue screen" loading="lazy">
+                            </div>
+                        </article>
+
+                        <article id="screen-history" class="screen-card reveal">
+                            <div class="screen-meta">
+                                <h3>Render history</h3>
+                                <span class="screen-tag">history.png</span>
+                            </div>
+                            <div class="screen-media">
+                                <img src="screenshots/history.png" alt="AI-Upscaler history screen" loading="lazy">
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="workflow" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div>
+                        <p class="section-kicker">Workflow</p>
+                        <h2 class="section-title">From low-res input to finished export in three steps.</h2>
+                    </div>
+                    <p class="section-text">
+                        The product story is now short, visual, and aligned with the actual app controls shown in the
+                        screenshot set.
+                    </p>
+                </div>
+
+                <div class="workflow">
+                    <article class="step reveal" data-step="01">
+                        <h3>Select media</h3>
+                        <p>Start from Image or Video mode, then choose a source file and destination folder.</p>
+                    </article>
+                    <article class="step reveal" data-step="02">
+                        <h3>Tune upscale</h3>
+                        <p>Download missing model files, then pick a model, 2x to 4x scale, GPU target, output format,
+                            and compression option.</p>
+                    </article>
+                    <article class="step reveal" data-step="03">
+                        <h3>Track output</h3>
+                        <p>Watch the task queue, preview the finished file, and revisit the render from History.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="section download">
+            <div class="container">
+                <div class="download-panel reveal">
+                    <div>
+                        <p class="section-kicker">Download</p>
+                        <h2 class="section-title">Portable builds for desktop upscaling.</h2>
+                        <p class="section-text">
+                            Download the release package for your operating system and run AI-Upscaler with the bundled
+                            model and ffmpeg support from this project.
+                        </p>
+
+                        <div class="hero-actions" style="margin-top: 28px;">
+                            <a class="btn btn-primary" href="https://github.com/prongbang/ai-upscaler/releases">
+                                Download Release
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="platforms" aria-label="Supported platforms">
+                        <a class="platform" href="https://github.com/prongbang/ai-upscaler/releases">
+                            <span class="platform-icon" aria-hidden="true">W</span>
+                            <span>
+                                <strong>Windows</strong>
+                                <span>Windows 10/11 64-bit</span>
+                            </span>
+                        </a>
+                        <a class="platform" href="https://github.com/prongbang/ai-upscaler/releases">
+                            <span class="platform-icon" aria-hidden="true">L</span>
+                            <span>
+                                <strong>Linux</strong>
+                                <span>Ubuntu, Debian, and compatible distros</span>
+                            </span>
+                        </a>
+                        <a class="platform" href="https://github.com/prongbang/ai-upscaler/releases">
+                            <span class="platform-icon" aria-hidden="true">M</span>
+                            <span>
+                                <strong>macOS</strong>
+                                <span>Intel and Apple Silicon systems</span>
+                            </span>
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="bg-black py-12">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                <div class="flex items-center space-x-2 mb-4 md:mb-0">
-                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M14 10L12 11L10 10M20 7L18 8M18 6L20 7M20 7V9.5M14 4L12 3L10 4M4 7L6 8M4 7L6 6M4 7V9.5M12 21L10 20M12 21L14 20M12 21V18.5M6 18L4 17V14.5M18 18L20 17V14.5"
-                            stroke="url(#footer-gradient)" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <defs>
-                            <linearGradient id="footer-gradient" x1="4" y1="3" x2="20" y2="21"
-                                gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#3b82f6" />
-                                <stop offset="50%" stop-color="#6366f1" />
-                                <stop offset="100%" stop-color="#8b5cf6" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                    <span class="text-xl font-bold">AI-Upscaler</span>
-                </div>
-
-                <div class="flex space-x-6 mb-4 md:mb-0">
-                    <a href="#features" class="text-gray-400 hover:text-white transition-colors">Features</a>
-                    <a href="#how-it-works" class="text-gray-400 hover:text-white transition-colors">How It Works</a>
-                    <a href="#download" class="text-gray-400 hover:text-white transition-colors">Download</a>
-                    <a href="https://github.com/prongbang/ai-upscaler"
-                        class="text-gray-400 hover:text-white transition-colors">GitHub</a>
-                </div>
-
-                <div>
-                    <a href="https://www.buymeacoffee.com/prongbang"
-                        class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-lg transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z" />
-                        </svg>
-                        <span>Buy Me A Coffee</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-                <p>© 2025 AI-Upscaler. Created by <a href="https://github.com/prongbang"
-                        class="text-blue-400 hover:text-blue-300">prongbang</a>. Powered by Real-ESRGAN technology.</p>
+    <footer class="site-footer">
+        <div class="container footer-row">
+            <a class="brand" href="#top" aria-label="AI-Upscaler home">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span>AI-Upscaler</span>
+            </a>
+            <div class="footer-links">
+                <a href="#features">Features</a>
+                <a href="#showcase">Screens</a>
+                <a href="#download">Download</a>
+                <a href="https://www.buymeacoffee.com/prongbang">Buy Me A Coffee</a>
             </div>
         </div>
     </footer>
 
+    <script>
+        const revealItems = document.querySelectorAll(".reveal");
+
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.14 });
+
+            revealItems.forEach((item) => observer.observe(item));
+        } else {
+            revealItems.forEach((item) => item.classList.add("is-visible"));
+        }
+    </script>
 </body>
 
 </html>
