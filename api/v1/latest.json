@@ -1,43 +1,43 @@
 {
-  "version": "0.2.1",
+  "version": "0.2.2",
   "notes": "See the assets to download and install this version.",
-  "pub_date": "2026-05-30T07:59:07.108Z",
+  "pub_date": "2026-05-30T10:13:11.204Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a1pCd3lNUGdMaTcyT0YwWnpwcndrcjhDdklTTnVsUXZrb3B2dUtqQU5kQ242L0VWa1FQTjBIcDFOaFI1UERTZmpZRlF4WEppNFdTQzhYL0RVS0FKSndRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTI3MzQ1CWZpbGU6VXBzY2FsZXIuYXBwLnRhci5negpJcWsrRm9ic2pHMjA0RFR4TnlGOEYxeXpoNlpIeXB0NlcrOUFsRk5JdXlYOUs5VDFHdXY0Zk1hVHVoa0RyUWl3Zy9DN2pQZFJKQW5ieDNhYmFTcGpCZz09Cg==",
-      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.1/Upscaler_aarch64.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a2VEaEVuazFGVG5NRTVhRE1FeS82QjdGQUt1QWFiQkN1WEVGT1RrOGhvVVFSbEJKbm5CUUt0L1VWdFZRaEsrQ0dmZ2NIb3FKeTJ3Z0dWbjAxNnY5VEFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTM1NzczCWZpbGU6VXBzY2FsZXIuYXBwLnRhci5negpkU2h6T0YyRDV2cWNtTHM5Z3MvNXNEamlLSmxGOE5kczlxYUV0YUFUS1BTcGNFYzl0dHhub1dpdjFPZ0FqbnNjdHJoTUMvL1hwemNCamFndXV3TlRBQT09Cg==",
+      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.2/Upscaler_aarch64.app.tar.gz"
     },
     "darwin-aarch64-app": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a1pCd3lNUGdMaTcyT0YwWnpwcndrcjhDdklTTnVsUXZrb3B2dUtqQU5kQ242L0VWa1FQTjBIcDFOaFI1UERTZmpZRlF4WEppNFdTQzhYL0RVS0FKSndRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTI3MzQ1CWZpbGU6VXBzY2FsZXIuYXBwLnRhci5negpJcWsrRm9ic2pHMjA0RFR4TnlGOEYxeXpoNlpIeXB0NlcrOUFsRk5JdXlYOUs5VDFHdXY0Zk1hVHVoa0RyUWl3Zy9DN2pQZFJKQW5ieDNhYmFTcGpCZz09Cg==",
-      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.1/Upscaler_aarch64.app.tar.gz"
-    },
-    "linux-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a1hxdUYxWmtKeCtVU2NjOUxpQVI0RFlHMDVXcU4ybGc3NUN2Tlo5VHZuUlR2OTkxY2ZPTWhZWW5jK2lRdWE4dFlJVW83ZzR3eUM4WENLUm1zQmRJcmdFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTI3NDEyCWZpbGU6VXBzY2FsZXJfMC4yLjFfYW1kNjQuQXBwSW1hZ2UKRk43dmdmQndyOWt1a281eG14bXBBVEpKb3h4T3l2aGUzZWVGOGtJU0orTm4rMXhibGx3VjdjT2M3cWlSOWdKREpETlhMSHNkdmdKMXIrQXpqZkEvQlE9PQo=",
-      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.1/Upscaler_0.2.1_amd64.AppImage"
-    },
-    "linux-x86_64-appimage": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a1hxdUYxWmtKeCtVU2NjOUxpQVI0RFlHMDVXcU4ybGc3NUN2Tlo5VHZuUlR2OTkxY2ZPTWhZWW5jK2lRdWE4dFlJVW83ZzR3eUM4WENLUm1zQmRJcmdFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTI3NDEyCWZpbGU6VXBzY2FsZXJfMC4yLjFfYW1kNjQuQXBwSW1hZ2UKRk43dmdmQndyOWt1a281eG14bXBBVEpKb3h4T3l2aGUzZWVGOGtJU0orTm4rMXhibGx3VjdjT2M3cWlSOWdKREpETlhMSHNkdmdKMXIrQXpqZkEvQlE9PQo=",
-      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.1/Upscaler_0.2.1_amd64.AppImage"
-    },
-    "linux-x86_64-deb": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a1JnN000N25nUHVDMjNtNlo3TlpkcVBVbmRXTVdoN0pJa0k3VEoxeWFNSU93by9CV3J3a2NrZVp0L2gzNWNJTU1ZUDcwTHRsRStoRFhLNGxEelROMUFFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTI3NDExCWZpbGU6VXBzY2FsZXJfMC4yLjFfYW1kNjQuZGViCllEWml2L0FxL2ZYdm53NWdOVkd5MmdoN1ZxU3FKeFRPSjZaQXNaUElKT0QzckpNNGRXVEV0UWFlQkxKSEIzL0FTZUZCUWNLc01HL09NVXFTOUVrTUFRPT0K",
-      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.1/Upscaler_0.2.1_amd64.deb"
-    },
-    "linux-x86_64-rpm": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a2ZBdDlUZDgvZk82SnVnVDhranBFTkdoa21mQWRGbnlYRCtWOHYvNVI2cTF6aWo4RjZ6REgzTklwaUozUGtBNGhkNEZMTWhRZDVxUktoL2VZQVRqZGdNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTI3NDEyCWZpbGU6VXBzY2FsZXItMC4yLjEtMS54ODZfNjQucnBtCkxMRFhNVkxNWEM3dE5vaE9LQUV1RHora2pFQWJkRnRZcThuakxxUXpTcnkwbGRPb3ZSUWZ4MitWTFFCZlFSTXBIRXA5QXFla3dpTTBSSUhuQSszd0FBPT0K",
-      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.1/Upscaler-0.2.1-1.x86_64.rpm"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a2VEaEVuazFGVG5NRTVhRE1FeS82QjdGQUt1QWFiQkN1WEVGT1RrOGhvVVFSbEJKbm5CUUt0L1VWdFZRaEsrQ0dmZ2NIb3FKeTJ3Z0dWbjAxNnY5VEFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTM1NzczCWZpbGU6VXBzY2FsZXIuYXBwLnRhci5negpkU2h6T0YyRDV2cWNtTHM5Z3MvNXNEamlLSmxGOE5kczlxYUV0YUFUS1BTcGNFYzl0dHhub1dpdjFPZ0FqbnNjdHJoTUMvL1hwemNCamFndXV3TlRBQT09Cg==",
+      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.2/Upscaler_aarch64.app.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a2JiMmw4NTkza1U0djhKNkJiMG9hVGtOUHlYZXd1b2J6Vm1mdjNRUmhOcDhvQzF0bVRhVVV2ci9UR1hzTzVrV3I2RmxiMGFhb2FJQyszbXA5VXhSbmdVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTI3OTQxCWZpbGU6VXBzY2FsZXJfMC4yLjFfeDY0LXNldHVwLmV4ZQpWL2hhY2ZJaGZZMWd2NTFSdGsxa2IxU2dTbFVBdVdCSEpKdGlKbWtvWUc3OWR6U1Y4NGNGeXdtTWQ5RmFValpwOGVlNnFocklqT1EvaFQ3MHJVK3REdz09Cg==",
-      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.1/Upscaler_0.2.1_x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a2VNUE94OWE0Y05WZjFqdTVkRHlhM1ViUjkvTE12ZVZSOWF4YUJVek5EaUtnNnQrNUFTbjE2ZzExUnJPeGl4QTV0MW9sTCsybEJrRFdySDVpZExIa1FNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTM1OTc0CWZpbGU6VXBzY2FsZXJfMC4yLjJfeDY0LXNldHVwLmV4ZQpRemlVOXMrY1RFOGpFdExPZ2JqamJ4NmFBZFlOUDRLcDlRUHlvY2ttcW9vd295S25LQzRvYmV3NjNwOW5aRkdCWmtMSC9MSWsxN3FMVnIyZEFtR0hEdz09Cg==",
+      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.2/Upscaler_0.2.2_x64-setup.exe"
     },
     "windows-x86_64-nsis": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a2JiMmw4NTkza1U0djhKNkJiMG9hVGtOUHlYZXd1b2J6Vm1mdjNRUmhOcDhvQzF0bVRhVVV2ci9UR1hzTzVrV3I2RmxiMGFhb2FJQyszbXA5VXhSbmdVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTI3OTQxCWZpbGU6VXBzY2FsZXJfMC4yLjFfeDY0LXNldHVwLmV4ZQpWL2hhY2ZJaGZZMWd2NTFSdGsxa2IxU2dTbFVBdVdCSEpKdGlKbWtvWUc3OWR6U1Y4NGNGeXdtTWQ5RmFValpwOGVlNnFocklqT1EvaFQ3MHJVK3REdz09Cg==",
-      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.1/Upscaler_0.2.1_x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a2VNUE94OWE0Y05WZjFqdTVkRHlhM1ViUjkvTE12ZVZSOWF4YUJVek5EaUtnNnQrNUFTbjE2ZzExUnJPeGl4QTV0MW9sTCsybEJrRFdySDVpZExIa1FNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTM1OTc0CWZpbGU6VXBzY2FsZXJfMC4yLjJfeDY0LXNldHVwLmV4ZQpRemlVOXMrY1RFOGpFdExPZ2JqamJ4NmFBZFlOUDRLcDlRUHlvY2ttcW9vd295S25LQzRvYmV3NjNwOW5aRkdCWmtMSC9MSWsxN3FMVnIyZEFtR0hEdz09Cg==",
+      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.2/Upscaler_0.2.2_x64-setup.exe"
     },
     "windows-x86_64-msi": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a2ZuVmFBSmVrOThnMkM1VEYxeE5Sam54K0VMdGlwMUdYWnNrZS8vUUQ4WWpKODg2R0N1TkhJdUV2WDVJV0dHYUVlbXM3VjRaNC9mdXN3T0kvalpGZEFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTI3OTQxCWZpbGU6VXBzY2FsZXJfMC4yLjFfeDY0X2VuLVVTLm1zaQpzMnl4eHJjdHh1blp0UjdDenBpRjk2ZzJMVmE3c2w2OGpaa1pITWJuVlFRQUo1MC9SZTZ2NmxNdEtxZFl3ZldQZUdBWmE5b24zMTRLb1EvK3VBdFJBQT09Cg==",
-      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.1/Upscaler_0.2.1_x64_en-US.msi"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a2FFYXlERVVrWS90Y1pSdVBXQXpTRExuVWdZWlpsVm9oU1ZmcUYyd2U0VitHbTZUMDZOZjhKd3IzZVJreVJvTVVpQm4rczlXQnhLWUJKRmc4azBDdHdBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTM1OTc0CWZpbGU6VXBzY2FsZXJfMC4yLjJfeDY0X2VuLVVTLm1zaQpmQmh2T0FmM2pUQVJ1b0J2SjFodld1VUpKdFdZQ0MxWXdIYUZMd3c4VUZLcTBxNytRYzZ6U0JRSHdRUUZWaDFnVkxacWtqcFRlYy9nNDBJeUFqczZBQT09Cg==",
+      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.2/Upscaler_0.2.2_x64_en-US.msi"
+    },
+    "linux-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a2FYYzNLbGtsZE01RS9lQ09yMTVEV3NIYXZ0OE1XbWJKLzVBK3ZmYTMwYlZHenR3amc2UER6R1ZIdmEvQmVrQmYzNUkrcmIyY2xINWJzQ1g5UXhqcUFVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTM1OTgwCWZpbGU6VXBzY2FsZXJfMC4yLjJfYW1kNjQuQXBwSW1hZ2UKalM2ZktzYTJCZlArV3FlcnJURVJQVTdRTkx4cE80cTRBMW5DUERnT3hPek45ekJYa3JIZ3RBNUVlVTlyVmVoN3JyZ0QvT29xZTYyM2dsZVRyVG4vQlE9PQo=",
+      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.2/Upscaler_0.2.2_amd64.AppImage"
+    },
+    "linux-x86_64-appimage": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a2FYYzNLbGtsZE01RS9lQ09yMTVEV3NIYXZ0OE1XbWJKLzVBK3ZmYTMwYlZHenR3amc2UER6R1ZIdmEvQmVrQmYzNUkrcmIyY2xINWJzQ1g5UXhqcUFVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTM1OTgwCWZpbGU6VXBzY2FsZXJfMC4yLjJfYW1kNjQuQXBwSW1hZ2UKalM2ZktzYTJCZlArV3FlcnJURVJQVTdRTkx4cE80cTRBMW5DUERnT3hPek45ekJYa3JIZ3RBNUVlVTlyVmVoN3JyZ0QvT29xZTYyM2dsZVRyVG4vQlE9PQo=",
+      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.2/Upscaler_0.2.2_amd64.AppImage"
+    },
+    "linux-x86_64-deb": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a2RIcHc2aWo5cFV2bmY4TW40b2t3QnVGeGxBSWYybTM3cDlpS3cvQUVOMFJPK3hnTG1OVGl4ZEg0K09zcXJlTTlUaXBlM2RMWU55N3kyekYzTFVTdlFBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTM1OTgwCWZpbGU6VXBzY2FsZXJfMC4yLjJfYW1kNjQuZGViCmFjM3dRU0h2K3ZFV0tpc1J0Y011bHRLZktJQmxRakI5emdKeitWTDIyYVAyOXpIUkJMS2dXTit4K0JidHB5VHBUMTVIRWtmaUovZmF6dU9adGtDTEFnPT0K",
+      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.2/Upscaler_0.2.2_amd64.deb"
+    },
+    "linux-x86_64-rpm": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRSlR6dXFNUms1a2VZeEwwVWJWQXRSRDdFL1FSTXdzNlBLRnlwVHVCd0pYSXZHL24zUlplWDBPQUpJcVNFYXFOdE5aSnhreC9NeDFTQ3Z6NzlSdjlnZnllNldYc25oZXdNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgwMTM1OTgwCWZpbGU6VXBzY2FsZXItMC4yLjItMS54ODZfNjQucnBtCnlCaTRRQk52ek1WZnI0UHdpNU1tWEUrcHRQNGhXZnVESmNrblhqb2NuUVBvbFJJVUVtV09ockx1Z2UvUHZ5dXZoOWZJK2xqcVhhVEdHUytJMGJzUkFBPT0K",
+      "url": "https://github.com/prongbang/ai-upscaler/releases/download/v0.2.2/Upscaler-0.2.2-1.x86_64.rpm"
     }
   }
 }
