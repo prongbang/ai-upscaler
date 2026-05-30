@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "notes": "Video Upscaling: Enhance video content by upscaling it. This functionality involves processing each frame of a video, increasing its resolution while maintaining the overall video quality.",
+  "pub_date": "2026-05-30T00:00:00Z",
+  "platforms": {
+    "darwin-aarch64": {
+      "signature": "PASTE_CONTENT_OF_MACOS_ARM64_APP_TAR_GZ_SIG_HERE",
+      "url": "https://github.com/prongbang/ai-upscaler/releases/download/0.2.0/Upscaler_0.2.0_aarch64.app.tar.gz"
+    },
+    "darwin-x86_64": {
+      "signature": "PASTE_CONTENT_OF_MACOS_INTEL_APP_TAR_GZ_SIG_HERE",
+      "url": "https://github.com/prongbang/ai-upscaler/releases/download/0.2.0/Upscaler_0.2.0_x64.app.tar.gz"
+    },
+    "windows-x86_64": {
+      "signature": "PASTE_CONTENT_OF_WINDOWS_SETUP_EXE_OR_MSI_SIG_HERE",
+      "url": "https://github.com/prongbang/ai-upscaler/releases/download/0.2.0/Upscaler_0.2.0_x64-setup.exe"
+    },
+    "linux-x86_64": {
+      "signature": "PASTE_CONTENT_OF_LINUX_APPIMAGE_SIG_HERE",
+      "url": "https://github.com/prongbang/ai-upscaler/releases/download/0.2.0/Upscaler_0.2.0_amd64.AppImage"
+    },
+    "linux-aarch64": {
+      "signature": "PASTE_CONTENT_OF_LINUX_ARM64_APPIMAGE_SIG_HERE",
+      "url": "https://github.com/prongbang/ai-upscaler/releases/download/0.2.0/Upscaler_0.2.0_arm64.AppImage"
+    }
+  }
+}
