@@ -195,16 +195,39 @@
             transform: translateY(-2px);
         }
 
+        .btn:active {
+            transform: translateY(0);
+        }
+
         .btn-primary {
             color: #041211;
             background: linear-gradient(135deg, var(--cyan), var(--green));
             box-shadow: 0 16px 34px rgba(47, 215, 196, 0.22);
         }
 
+        .btn-primary:hover {
+            box-shadow: 0 20px 44px rgba(47, 215, 196, 0.32);
+        }
+
         .btn-secondary {
             color: var(--text);
             border-color: rgba(255, 255, 255, 0.16);
             background: rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--line-strong);
+            background: rgba(255, 255, 255, 0.13);
+        }
+
+        .btn:focus-visible,
+        .nav-links a:focus-visible,
+        .mode-card:focus-visible,
+        .platform:focus-visible,
+        .footer-links a:focus-visible,
+        .brand:focus-visible {
+            outline: 2px solid var(--cyan);
+            outline-offset: 3px;
         }
 
         .hero {
@@ -220,6 +243,19 @@
                 url("screenshots/image.png") center / cover no-repeat;
         }
 
+        .hero::before {
+            position: absolute;
+            inset: -18% -12% auto -12%;
+            height: 130%;
+            pointer-events: none;
+            content: "";
+            background:
+                radial-gradient(38rem 26rem at 14% 20%, rgba(47, 215, 196, 0.16), transparent 70%),
+                radial-gradient(30rem 22rem at 78% 6%, rgba(92, 140, 255, 0.14), transparent 70%),
+                radial-gradient(24rem 18rem at 58% 92%, rgba(247, 201, 72, 0.08), transparent 70%);
+            animation: orb-drift 18s ease-in-out infinite alternate;
+        }
+
         .hero::after {
             position: absolute;
             inset: auto 0 0;
@@ -227,6 +263,41 @@
             pointer-events: none;
             content: "";
             background: linear-gradient(180deg, transparent, var(--bg));
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px;
+            padding: 6px 12px 6px 8px;
+            color: var(--soft);
+            font-size: 13px;
+            font-weight: 700;
+            border: 1px solid rgba(47, 215, 196, 0.28);
+            border-radius: 999px;
+            background: rgba(47, 215, 196, 0.08);
+            transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
+        }
+
+        .hero-badge:hover {
+            border-color: var(--line-strong);
+            background: rgba(47, 215, 196, 0.14);
+            transform: translateY(-2px);
+        }
+
+        .hero-badge b {
+            display: inline-flex;
+            align-items: center;
+            min-height: 20px;
+            padding: 0 8px;
+            color: #041211;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--cyan), var(--green));
         }
 
         .hero-grid {
@@ -438,13 +509,13 @@
 
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(5, minmax(0, 1fr));
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 14px;
         }
 
         .feature-card {
             position: relative;
-            min-height: 268px;
+            min-height: 252px;
             padding: 22px;
             border: 1px solid var(--line);
             border-radius: var(--radius);
@@ -490,9 +561,22 @@
             background: var(--green);
         }
 
+        .feature-card:nth-child(6) .feature-number {
+            color: var(--text);
+            background: var(--blue);
+        }
+
+        .feature-card:nth-child(7) .feature-number {
+            background: var(--amber);
+        }
+
+        .feature-card:nth-child(8) .feature-number {
+            background: var(--coral);
+        }
+
         .feature-card h3 {
             margin-bottom: 12px;
-            font-size: 22px;
+            font-size: 21px;
         }
 
         .feature-card p {
@@ -626,7 +710,275 @@
             height: 100%;
         }
 
-        .workflow {
+        /* ---- Visual workflow editor ---- */
+        .editor {
+            background:
+                linear-gradient(180deg, rgba(12, 18, 32, 0.55), rgba(6, 9, 16, 0)),
+                var(--bg);
+        }
+
+        .editor-layout {
+            display: grid;
+            gap: 22px;
+        }
+
+        .wf-canvas {
+            position: relative;
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background:
+                radial-gradient(28rem 20rem at 16% 10%, rgba(47, 215, 196, 0.1), transparent 70%),
+                radial-gradient(26rem 18rem at 86% 88%, rgba(92, 140, 255, 0.1), transparent 70%),
+                linear-gradient(180deg, rgba(16, 24, 39, 0.94), rgba(8, 13, 23, 0.94));
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .wf-canvas::before {
+            position: absolute;
+            inset: 0;
+            content: "";
+            pointer-events: none;
+            background-image: radial-gradient(rgba(159, 177, 204, 0.2) 1px, transparent 1px);
+            background-size: 26px 26px;
+            mask-image: radial-gradient(circle at 50% 46%, rgba(0, 0, 0, 0.9), transparent 76%);
+        }
+
+        .wf-toolbar {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .wf-dots {
+            display: inline-flex;
+            gap: 6px;
+        }
+
+        .wf-dots i {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .wf-dots i:first-child {
+            background: rgba(255, 127, 102, 0.7);
+        }
+
+        .wf-dots i:nth-child(2) {
+            background: rgba(247, 201, 72, 0.7);
+        }
+
+        .wf-dots i:last-child {
+            background: rgba(167, 243, 90, 0.7);
+        }
+
+        .wf-file {
+            color: var(--soft);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .wf-file span {
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .wf-toolbar .wf-pill {
+            margin-left: auto;
+        }
+
+        .wf-stage {
+            position: relative;
+            width: 900px;
+            height: 400px;
+            margin: 0 auto;
+        }
+
+        .wf-edges {
+            position: absolute;
+            inset: 0;
+            width: 900px;
+            height: 400px;
+        }
+
+        .wf-edge {
+            fill: none;
+            stroke: var(--line-strong);
+            stroke-width: 2;
+        }
+
+        .wf-flow {
+            fill: none;
+            stroke: var(--cyan);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-dasharray: 6 16;
+            animation: wf-dash 1.7s linear infinite;
+        }
+
+        .wf-port {
+            fill: #060910;
+            stroke: var(--line-strong);
+            stroke-width: 2;
+        }
+
+        .wf-node {
+            position: absolute;
+            width: 190px;
+            height: 96px;
+            padding: 12px 13px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 10px;
+            background: linear-gradient(180deg, rgba(21, 31, 49, 0.97), rgba(12, 18, 32, 0.97));
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.46);
+            transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+        }
+
+        .wf-node:hover {
+            transform: translateY(-3px);
+            border-color: var(--line-strong);
+        }
+
+        .wf-node.is-selected {
+            border-color: rgba(47, 215, 196, 0.72);
+            box-shadow:
+                0 0 0 1px rgba(47, 215, 196, 0.3),
+                0 18px 44px rgba(47, 215, 196, 0.2);
+        }
+
+        .wf-node-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 9px;
+        }
+
+        .wf-node-kind {
+            color: var(--soft);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+        }
+
+        .wf-node-body {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wf-node-sub {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .wf-thumb {
+            flex: none;
+            width: 38px;
+            height: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 5px;
+            background:
+                linear-gradient(135deg, rgba(92, 140, 255, 0.9), rgba(47, 215, 196, 0.85) 62%, rgba(247, 201, 72, 0.8));
+        }
+
+        .wf-pill {
+            display: inline-flex;
+            align-items: center;
+            flex: none;
+            min-height: 20px;
+            padding: 0 8px;
+            color: var(--cyan);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            border: 1px solid rgba(47, 215, 196, 0.34);
+            border-radius: 999px;
+            background: rgba(47, 215, 196, 0.12);
+        }
+
+        .wf-pill.is-done {
+            color: var(--green);
+            border-color: rgba(167, 243, 90, 0.34);
+            background: rgba(167, 243, 90, 0.12);
+        }
+
+        .wf-pill.is-run {
+            color: var(--amber);
+            border-color: rgba(247, 201, 72, 0.34);
+            background: rgba(247, 201, 72, 0.12);
+        }
+
+        .wf-bar {
+            height: 4px;
+            margin-top: 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .wf-bar span {
+            display: block;
+            height: 100%;
+            width: 68%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--cyan), var(--green));
+            animation: wf-bar 3.4s ease-in-out infinite;
+        }
+
+        .wf-hint {
+            display: none;
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .wf-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 12px;
+        }
+
+        .wf-point {
+            padding: 16px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: rgba(16, 24, 39, 0.72);
+            transition: border-color 200ms ease, transform 200ms ease, background 200ms ease;
+        }
+
+        .wf-point:hover {
+            border-color: var(--line-strong);
+            background: rgba(16, 24, 39, 0.9);
+            transform: translateY(-3px);
+        }
+
+        .wf-point strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .wf-point span {
+            display: block;
+            color: var(--muted);
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+
+        .steps {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 14px;
@@ -778,8 +1130,20 @@
             font-weight: 700;
         }
 
+        .footer-links a {
+            transition: color 180ms ease;
+        }
+
         .footer-links a:hover {
             color: var(--text);
+        }
+
+        .footer-note {
+            margin: 24px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 13px;
         }
 
         .reveal {
@@ -832,6 +1196,34 @@
             }
         }
 
+        @keyframes orb-drift {
+            from {
+                transform: translate3d(-16px, -10px, 0);
+            }
+
+            to {
+                transform: translate3d(20px, 14px, 0);
+            }
+        }
+
+        @keyframes wf-dash {
+            to {
+                stroke-dashoffset: -44;
+            }
+        }
+
+        @keyframes wf-bar {
+
+            0%,
+            100% {
+                width: 56%;
+            }
+
+            50% {
+                width: 88%;
+            }
+        }
+
         @keyframes scan-top {
 
             0%,
@@ -870,8 +1262,16 @@
             }
 
             .feature-grid,
-            .workflow {
+            .steps {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .wf-canvas {
+                padding: 18px;
+            }
+
+            .wf-hint {
+                display: block;
             }
         }
 
@@ -917,8 +1317,14 @@
             .stats,
             .image-pair,
             .feature-grid,
-            .workflow {
+            .steps {
                 grid-template-columns: 1fr;
+            }
+
+            .wf-stage {
+                transform: scale(0.82);
+                transform-origin: left top;
+                margin-bottom: -72px;
             }
 
             .hero-actions .btn {
@@ -1007,8 +1413,9 @@
 
             <div class="nav-links" aria-label="Page sections">
                 <a href="#features">Features</a>
-                <a href="#showcase">Screens</a>
                 <a href="#workflow">Workflow</a>
+                <a href="#showcase">Screens</a>
+                <a href="#steps">How it works</a>
                 <a href="#download">Download</a>
             </div>
 
@@ -1022,13 +1429,18 @@
                 <div class="hero-copy reveal">
                     <p class="eyebrow">Real-ESRGAN desktop upscaling</p>
                     <h1>AI-Upscaler</h1>
+                    <a class="hero-badge" href="#workflow">
+                        <b>New 0.4.0</b>
+                        <span>Visual workflow editor</span>
+                    </a>
                     <p class="hero-lead">
                         A sharp, GPU-ready workspace for improving images and videos with 2x, 3x, and 4x upscale
-                        pipelines. Built for fast previews, clean queues, and repeatable exports.
+                        pipelines. Chain nodes into a pipeline, branch one upscale into many outputs, and run a whole
+                        folder in one pass.
                     </p>
 
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="#showcase">Explore Features</a>
+                        <a class="btn btn-primary" href="#workflow">See the workflow editor</a>
                         <a class="btn btn-secondary" href="https://github.com/prongbang/ai-upscaler">View GitHub</a>
                     </div>
 
@@ -1101,7 +1513,8 @@
                     </div>
                     <p class="section-text">
                         The interface keeps selection, compute settings, output format, progress, and render history
-                        close together so the app feels fast even when the job is heavy.
+                        close together so the app feels fast even when the job is heavy &mdash; and 0.4.0 adds a node
+                        editor on top of it.
                     </p>
                 </div>
 
@@ -1135,6 +1548,147 @@
                         <h3>History</h3>
                         <p>Keep completed results discoverable with file name, scale, timestamp, and quick actions.</p>
                     </article>
+                    <article class="feature-card reveal">
+                        <span class="feature-number">06</span>
+                        <h3>Workflow</h3>
+                        <p>Build a visual pipeline from nodes, branch one upscale into several outputs, and save it for
+                            reuse.</p>
+                    </article>
+                    <article class="feature-card reveal">
+                        <span class="feature-number">07</span>
+                        <h3>Custom Models</h3>
+                        <p>Point the app at your own NCNN model files (.param and .bin) and use them like the bundled
+                            ones.</p>
+                    </article>
+                    <article class="feature-card reveal">
+                        <span class="feature-number">08</span>
+                        <h3>Folder Batch</h3>
+                        <p>Pick a whole folder as the input and let one workflow run across every file inside it.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="workflow" class="section editor">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div>
+                        <p class="section-kicker">New in 0.4.0 &middot; Workflow</p>
+                        <h2 class="section-title">Build visual pipelines, not one-off jobs.</h2>
+                    </div>
+                    <p class="section-text">
+                        A node editor for upscaling. Drop an input, wire it through models and compression, then fan
+                        the same render out to as many outputs as you need &mdash; and keep the graph for next time.
+                    </p>
+                </div>
+
+                <div class="editor-layout">
+                    <div class="wf-canvas reveal">
+                        <div class="wf-toolbar">
+                            <span class="wf-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="wf-file">poster-batch.json <span>&middot; 5 nodes</span></span>
+                            <span class="wf-pill is-run">Running</span>
+                        </div>
+
+                        <div class="wf-stage">
+                            <svg class="wf-edges" viewBox="0 0 900 400" aria-hidden="true" focusable="false">
+                                <path class="wf-edge" d="M190 192 H250" />
+                                <path class="wf-edge" d="M440 192 C 466 192, 466 88, 490 88" />
+                                <path class="wf-edge" d="M440 192 C 466 192, 466 316, 490 316" />
+                                <path class="wf-edge" d="M680 88 H710" />
+
+                                <path class="wf-flow" d="M190 192 H250" />
+                                <path class="wf-flow" d="M440 192 C 466 192, 466 88, 490 88" />
+                                <path class="wf-flow" d="M440 192 C 466 192, 466 316, 490 316" />
+                                <path class="wf-flow" d="M680 88 H710" />
+
+                                <circle class="wf-port" cx="190" cy="192" r="4" />
+                                <circle class="wf-port" cx="250" cy="192" r="4" />
+                                <circle class="wf-port" cx="440" cy="192" r="4" />
+                                <circle class="wf-port" cx="490" cy="88" r="4" />
+                                <circle class="wf-port" cx="680" cy="88" r="4" />
+                                <circle class="wf-port" cx="710" cy="88" r="4" />
+                                <circle class="wf-port" cx="490" cy="316" r="4" />
+                            </svg>
+
+                            <article class="wf-node" style="left: 0; top: 144px;">
+                                <div class="wf-node-head">
+                                    <span class="wf-node-kind">Input</span>
+                                    <span class="wf-pill is-done">Folder</span>
+                                </div>
+                                <div class="wf-node-body">
+                                    <span class="wf-thumb" aria-hidden="true"></span>
+                                    <p class="wf-node-sub">/photos/raw &middot; 128 files</p>
+                                </div>
+                            </article>
+
+                            <article class="wf-node is-selected" style="left: 250px; top: 144px;">
+                                <div class="wf-node-head">
+                                    <span class="wf-node-kind">Upscale</span>
+                                    <span class="wf-pill is-run">68%</span>
+                                </div>
+                                <p class="wf-node-sub">realesrgan-x4plus &middot; 4x</p>
+                                <div class="wf-bar" aria-hidden="true"><span></span></div>
+                            </article>
+
+                            <article class="wf-node" style="left: 490px; top: 40px;">
+                                <div class="wf-node-head">
+                                    <span class="wf-node-kind">Compress</span>
+                                    <span class="wf-pill is-done">Done</span>
+                                </div>
+                                <p class="wf-node-sub">webp &middot; quality 82</p>
+                            </article>
+
+                            <article class="wf-node" style="left: 710px; top: 40px;">
+                                <div class="wf-node-head">
+                                    <span class="wf-node-kind">Output</span>
+                                    <span class="wf-pill is-done">Done</span>
+                                </div>
+                                <p class="wf-node-sub">/photos/web</p>
+                            </article>
+
+                            <article class="wf-node" style="left: 490px; top: 268px;">
+                                <div class="wf-node-head">
+                                    <span class="wf-node-kind">Output</span>
+                                    <span class="wf-pill">Queued</span>
+                                </div>
+                                <p class="wf-node-sub">/photos/archive &middot; png, lossless</p>
+                            </article>
+                        </div>
+                    </div>
+
+                    <p class="wf-hint">Scroll the canvas sideways on small screens to follow the full graph.</p>
+
+                    <div class="wf-points reveal">
+                        <div class="wf-point">
+                            <strong>Drag and drop nodes</strong>
+                            <span>Place nodes on the canvas and wire them together to describe the run.</span>
+                        </div>
+                        <div class="wf-point">
+                            <strong>Branch into many outputs</strong>
+                            <span>One upscale can feed several outputs at once &mdash; it is a DAG, not a list.</span>
+                        </div>
+                        <div class="wf-point">
+                            <strong>Chain 4x into 2x for 8x</strong>
+                            <span>Stack upscale nodes to reach scales no single model gives you.</span>
+                        </div>
+                        <div class="wf-point">
+                            <strong>Process a whole folder</strong>
+                            <span>Point the input node at a directory and the graph runs across every file.</span>
+                        </div>
+                        <div class="wf-point">
+                            <strong>Image and video pipelines</strong>
+                            <span>The same editor drives both still images and video renders.</span>
+                        </div>
+                        <div class="wf-point">
+                            <strong>Save and share workflows</strong>
+                            <span>Keep multiple graphs side by side and export any of them as JSON.</span>
+                        </div>
+                        <div class="wf-point">
+                            <strong>Use custom models</strong>
+                            <span>Bring your own NCNN model files (.param and .bin) into any upscale node.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1245,28 +1799,28 @@
             </div>
         </section>
 
-        <section id="workflow" class="section">
+        <section id="steps" class="section">
             <div class="container">
                 <div class="section-header reveal">
                     <div>
-                        <p class="section-kicker">Workflow</p>
+                        <p class="section-kicker">How it works</p>
                         <h2 class="section-title">From low-res input to finished export in three steps.</h2>
                     </div>
                     <p class="section-text">
-                        The product story is now short, visual, and aligned with the actual app controls shown in the
+                        The product story is short, visual, and aligned with the actual app controls shown in the
                         screenshot set.
                     </p>
                 </div>
 
-                <div class="workflow">
+                <div class="steps">
                     <article class="step reveal" data-step="01">
                         <h3>Select media</h3>
                         <p>Start from Image or Video mode, then choose a source file and destination folder.</p>
                     </article>
                     <article class="step reveal" data-step="02">
                         <h3>Tune upscale</h3>
-                        <p>Download missing model files, then pick a model, 2x to 4x scale, GPU target, output format,
-                            and compression option.</p>
+                        <p>Download missing model files or add your own, then pick a model, 2x to 4x scale, GPU target,
+                            output format, and compression option.</p>
                     </article>
                     <article class="step reveal" data-step="03">
                         <h3>Track output</h3>
@@ -1330,11 +1884,14 @@
             </a>
             <div class="footer-links">
                 <a href="#features">Features</a>
+                <a href="#workflow">Workflow</a>
                 <a href="#showcase">Screens</a>
                 <a href="#download">Download</a>
+                <a href="https://github.com/prongbang/ai-upscaler">GitHub</a>
                 <a href="https://www.buymeacoffee.com/prongbang">Buy Me A Coffee</a>
             </div>
         </div>
+        <p class="footer-note container">Powered by Real-ESRGAN and ncnn &middot; built with Tauri.</p>
     </footer>
 
     <script>
