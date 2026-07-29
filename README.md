@@ -43,6 +43,10 @@ Get the latest portable executable files:
 ### History
 ![History Interface](screenshots/history.png)
 
+### Workflow 
+<img width="1974" height="1282" alt="image" src="https://github.com/user-attachments/assets/57f328f0-04bd-42b0-b0b2-75606f18aabd" />
+
+
 ## 🧠 Models
 
 AI-Upscaler uses advanced neural network models to deliver exceptional results.
